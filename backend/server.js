@@ -1,23 +1,37 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import products from './data/products.js'
-dotenv.config()
+import colors from 'colors'
+import connectDB from './config/db.js'
 
+// Error Handler Middleware
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+
+// product Routes
+import productRoutes from './routes/productRoutes.js'
+
+// Env Config 
+dotenv.config()
+// Db Connection
+connectDB()
+
+// Init Express
 const app = express()
 
+// 404 error from Not Found
+app.use(notFound)
+// Error Handler from ErrorHander
+app.use(errorHandler)
+
+// Home Routes
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
 
-app.get('/api/products', (req, res) => {
-    res.json(products)
-})
-
-app.get('/api/products/:id', (req, res) => {
-    const product = products.find(p => p._id === req.params.id)
-    res.json(product)
-})
+// product Routes prefix with /api
+app.use('/api/products', productRoutes);
 
 
+
+// PORT and ENV Variables
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port${PORT}`))
+app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold))
