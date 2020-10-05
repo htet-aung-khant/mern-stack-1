@@ -17,11 +17,6 @@ connectDB()
 // Init Express
 const app = express()
 
-// 404 error from Not Found
-app.use(notFound)
-// Error Handler from ErrorHander
-app.use(errorHandler)
-
 // Home Routes
 app.get('/', (req, res) => {
     res.send('API is running...')
@@ -30,6 +25,10 @@ app.get('/', (req, res) => {
 // product Routes prefix with /api
 app.use('/api/products', productRoutes);
 
+// 404 error from Not Found
+app.use(notFound)
+// Error Handler from ErrorHander
+app.use(errorHandler)
 
 
 // PORT and ENV Variables
