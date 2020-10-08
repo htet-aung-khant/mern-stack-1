@@ -17,11 +17,11 @@ const CartScreen = ({ match, location, history }) => {
 
     const { cartItems } = cart
 
-    
+
     useEffect(() => {
        if(productId){
            dispatch(addToCart(productId, qty))
-       } 
+       }
     }, [dispatch, productId, qty])
 
     const removeFromCartHandler = (id) => {
@@ -54,16 +54,17 @@ const CartScreen = ({ match, location, history }) => {
                                         value={item.qty}
                                         onChange={(e) => dispatch(addToCart(item.product,Number(e.target.value)))}>
                                         {[...Array(item.countInStock).keys()].map((x) => (
-                                            <option key={x + 1} value={x + 1}>{x + 1}</option>)
+                                            <option key={x + 1} value={x + 1}>{x + 1}</option>
+                                          )
                                         )}
                                     </Form.Control>
-                                </Col>                
-                                 
+                                </Col>
+
                                 <Col md={2}>
                                     <Button type='button' variant='light' onClick={()=> removeFromCartHandler(item.product)}>
                                         <i className='fas fa-trash'></i>
                                     </Button>
-                                </Col>            
+                                </Col>
                             </Row>
                         </ListGroup.Item>
                     ))}
