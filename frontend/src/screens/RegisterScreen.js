@@ -31,10 +31,12 @@ const RegisterScreen = ({ history, location }) => {
     const submitHandler = (e) => {
         e.preventDefault()
         // dispatch register
-        if(password !== confirmPassword){
-          setMessage('Password didnt match')
-        }else{
-          dispatch(register(name,email,password))
+        if (password !== confirmPassword)
+        {
+            setMessage('Password didnt match')
+        } else
+        {
+            dispatch(register(name, email, password))
         }
     }
 
@@ -47,12 +49,16 @@ const RegisterScreen = ({ history, location }) => {
             <Form.Group controlId='name'>
                 <Form.Label>UserName</Form.Label>
                 <Form.Control type='name' placeholder='Enter Username' value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
+            </Form.Group>
+            <Form.Group controlId='email'>
                 <Form.Label>Email</Form.Label>
                 <Form.Control type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)}></Form.Control>
             </Form.Group>
             <Form.Group controlId='password'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control type='password' placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
+            </Form.Group>
+            <Form.Group controlId='confirmPassword'>
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control type='password' placeholder='Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
             </Form.Group>
