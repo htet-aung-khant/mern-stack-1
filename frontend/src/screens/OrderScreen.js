@@ -38,6 +38,7 @@ const OrderScreen = ({ match }) => {
         <h1>Order {order._id}</h1>
         <Row>
         <Col md={8}>
+        <Card>
           <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h2>Shipping</h2>
@@ -82,6 +83,7 @@ const OrderScreen = ({ match }) => {
                  )}
              </ListGroup.Item>
           </ListGroup>
+          </Card>
         </Col>
         <Col md={4}>
           <Card>
@@ -117,7 +119,6 @@ const OrderScreen = ({ match }) => {
           </Card>
         </Col>
         </Row>
-
       </>
 }
 
